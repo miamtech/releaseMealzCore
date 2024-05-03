@@ -20,7 +20,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .binaryTarget(
             name: "MealzCore",
-            path: "mealzCore.xcframework"
+            path: "mealzcore.xcframework"
         )
     ]
 )
