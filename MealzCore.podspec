@@ -1,6 +1,7 @@
+
 Pod::Spec.new do |spec|
-    spec.name              = 'miamCore'
-    spec.version           = '10.0.0'
+    spec.name              = 'MealzCore'
+    spec.version           = '1.0.0'
     spec.summary           = 'Miam Core for iOS'
     spec.homepage          = 'https://www.miam.tech'
        spec.description           = <<-DESC
@@ -9,7 +10,7 @@ Pod::Spec.new do |spec|
     spec.author            = { 'Vincent Kergonna' => 'it@miam.tech' }
     spec.license           = { :type => 'GPLv3', :file => 'LICENSE' }
     spec.swift_versions = "5.8"
-    spec.platform          = :ios, "11.0"
-    spec.source            = { :http => 'https://storage.googleapis.com/kmm-sdk.miam.tech/3.18.0/miamCore.zip' }
-    spec.ios.vendored_frameworks = 'miamCore.xcframework'
+    spec.platform          = :ios, "12.0"
+    spec.source            = { :http => 'https://github.com/miamtech/releaseMealzCore/releases/download/1.0.0/mealzcore.zip' }
+    spec.ios.vendored_frameworks = 'mealzcore/mealzcore.xcframework'
 end
