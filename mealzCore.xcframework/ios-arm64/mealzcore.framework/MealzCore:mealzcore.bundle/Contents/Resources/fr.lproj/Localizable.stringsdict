@@ -95,7 +95,7 @@
 				<key>NSStringFormatValueTypeKey</key>
 				<string>d</string>
 				<key>zero</key>
-				<string>Vous n\'avez pas encore de repas dans votre panier</string>
+				<string>Vous n&apos;avez pas encore de repas dans votre panier</string>
 				<key>one</key>
 				<string>Vous avez %%d repas dans votre panier</string>
 				<key>other</key>
@@ -113,9 +113,9 @@
 				<key>NSStringFormatValueTypeKey</key>
 				<string>d</string>
 				<key>one</key>
-				<string>Calculé pour %%d repa</string>
-				<key>other</key>
 				<string>Calculé pour %%d repas</string>
+				<key>other</key>
+				<string>Calculés pour %%d repas</string>
 			</dict>
 		</dict>
 <key>com_miam_my_meals_products</key>
@@ -132,6 +132,22 @@
 				<string>%%d produit</string>
 				<key>other</key>
 				<string>%%d produits</string>
+			</dict>
+		</dict>
+<key>com_miam_my_products_shared_with_recipe</key>
+		<dict>
+			<key>NSStringLocalizedFormatKey</key>
+			<string>%#@pluraled@</string>
+			<key>pluraled</key>
+			<dict>
+				<key>NSStringFormatSpecTypeKey</key>
+				<string>NSStringPluralRuleType</string>
+				<key>NSStringFormatValueTypeKey</key>
+				<string>d</string>
+				<key>one</key>
+				<string>Calculé pour %%d repas</string>
+				<key>other</key>
+				<string>Calculés pour %%d repas</string>
 			</dict>
 		</dict>
 <key>items</key>

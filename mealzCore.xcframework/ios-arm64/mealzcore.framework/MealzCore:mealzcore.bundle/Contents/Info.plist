@@ -5,7 +5,7 @@
         <key>CFBundleDevelopmentRegion</key>
         <string>en</string>
         <key>CFBundleIdentifier</key>
-        <string>ai.mealz.core.resources.MR</string>
+        <string>ai.mealz.core.resources.main</string>
         <key>CFBundleVersion</key>
         <string>1</string>
         <key>CFBundlePackageType</key>
