@@ -1,6 +1,6 @@
 
 Pod::Spec.new do |spec|
-    spec.name              = 'MealzCoreStaging'
+    spec.name              = 'MealzCore'
     spec.version           = '4.1.0'
     spec.summary           = 'Mealz Core for iOS'
     spec.homepage          = 'https://www.mealz.ai'
