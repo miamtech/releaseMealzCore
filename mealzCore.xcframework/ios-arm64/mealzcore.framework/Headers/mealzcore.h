@@ -236,6 +236,7 @@ __attribute__((swift_name("Mealz.Notifications")))
 @property (class, readonly, getter=shared) MealzcoreMealzNotifications *shared __attribute__((swift_name("shared")));
 @property (readonly) id<MealzcoreNotifier> analytics __attribute__((swift_name("analytics")));
 @property (readonly) id<MealzcoreNotifier> availability __attribute__((swift_name("availability")));
+@property (readonly) id<MealzcoreNotifier> pointOfSale __attribute__((swift_name("pointOfSale")));
 @property (readonly) id<MealzcoreNotifier> preferences __attribute__((swift_name("preferences")));
 @property (readonly) id<MealzcoreNotifier> recipesCount __attribute__((swift_name("recipesCount")));
 @property (readonly) id<MealzcoreNotifier> toaster __attribute__((swift_name("toaster")));
@@ -2542,6 +2543,7 @@ __attribute__((swift_name("ItemAttributes")))
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString * _Nullable brand __attribute__((swift_name("brand")));
+@property (readonly) NSString * _Nullable brandOrNull __attribute__((swift_name("brandOrNull")));
 @property (readonly) MealzcoreInt * _Nullable capacityFactor __attribute__((swift_name("capacityFactor")));
 @property (readonly) NSString * _Nullable capacityUnit __attribute__((swift_name("capacityUnit")));
 @property (readonly) NSString * _Nullable capacityVolume __attribute__((swift_name("capacityVolume")));
@@ -5654,25 +5656,9 @@ __attribute__((swift_name("ConfirmBasketUseCase")))
 @end
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ReloadBasketIfPreviousAuthlessUserStoredUseCase")))
-@interface MealzcoreReloadBasketIfPreviousAuthlessUserStoredUseCase : MealzcoreBase <MealzcoreUseCase, MealzcoreKotlinx_coroutines_coreCoroutineScope>
-- (instancetype)initWithUserStore:(id<MealzcoreUserStore>)userStore userPreferences:(id<MealzcoreUserPreferences>)userPreferences reloadBasketUseCase:(id<MealzcoreUseCase>)reloadBasketUseCase __attribute__((swift_name("init(userStore:userPreferences:reloadBasketUseCase:)"))) __attribute__((objc_designated_initializer));
-- (id<MealzcoreKotlinx_coroutines_coreDeferred>)invoke __attribute__((swift_name("invoke()")));
-@property (readonly) id<MealzcoreKotlinCoroutineContext> coroutineContext __attribute__((swift_name("coroutineContext")));
-@end
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ReloadBasketUseCase")))
-@interface MealzcoreReloadBasketUseCase : MealzcoreBase <MealzcoreUseCase, MealzcoreKotlinx_coroutines_coreCoroutineScope>
-- (instancetype)initWithBasketStore:(id<MealzcoreBasketStore>)basketStore userStore:(id<MealzcoreUserStore>)userStore basketRepository:(id<MealzcoreBasketRepository>)basketRepository __attribute__((swift_name("init(basketStore:userStore:basketRepository:)"))) __attribute__((objc_designated_initializer));
-- (id<MealzcoreKotlinx_coroutines_coreDeferred>)invoke __attribute__((swift_name("invoke()")));
-@property (readonly) id<MealzcoreKotlinCoroutineContext> coroutineContext __attribute__((swift_name("coroutineContext")));
-@end
-
-__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("StartTransferBasketUseCase")))
 @interface MealzcoreStartTransferBasketUseCase : MealzcoreBase <MealzcoreUseCase, MealzcoreKotlinx_coroutines_coreCoroutineScope>
-- (instancetype)initWithBasketRepositoryImp:(id<MealzcoreBasketRepository>)basketRepositoryImp userPreferences:(id<MealzcoreUserPreferences>)userPreferences reloadBasketUseCase:(id<MealzcoreUseCase>)reloadBasketUseCase __attribute__((swift_name("init(basketRepositoryImp:userPreferences:reloadBasketUseCase:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithBasketRepositoryImp:(id<MealzcoreBasketRepository>)basketRepositoryImp userPreferences:(id<MealzcoreUserPreferences>)userPreferences reloadBasketUseCase:(id<MealzcoreParameterisedUseCase>)reloadBasketUseCase __attribute__((swift_name("init(basketRepositoryImp:userPreferences:reloadBasketUseCase:)"))) __attribute__((objc_designated_initializer));
 - (id<MealzcoreKotlinx_coroutines_coreDeferred>)invoke __attribute__((swift_name("invoke()")));
 @property (readonly) id<MealzcoreKotlinCoroutineContext> coroutineContext __attribute__((swift_name("coroutineContext")));
 @end
@@ -5682,6 +5668,30 @@ __attribute__((swift_name("TransferAuthlessBasketUseCase")))
 @interface MealzcoreTransferAuthlessBasketUseCase : MealzcoreBase <MealzcoreParameterisedUseCase, MealzcoreKotlinx_coroutines_coreCoroutineScope>
 - (instancetype)initWithBasketRepositoryImp:(id<MealzcoreBasketRepository>)basketRepositoryImp __attribute__((swift_name("init(basketRepositoryImp:)"))) __attribute__((objc_designated_initializer));
 - (id<MealzcoreKotlinx_coroutines_coreDeferred>)invokeInput:(NSString *)input __attribute__((swift_name("invoke(input:)")));
+@property (readonly) id<MealzcoreKotlinCoroutineContext> coroutineContext __attribute__((swift_name("coroutineContext")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ReloadBasketIfPreviousAuthlessUserStoredUseCase")))
+@interface MealzcoreReloadBasketIfPreviousAuthlessUserStoredUseCase : MealzcoreBase <MealzcoreUseCase, MealzcoreKotlinx_coroutines_coreCoroutineScope>
+- (instancetype)initWithUserStore:(id<MealzcoreUserStore>)userStore userPreferences:(id<MealzcoreUserPreferences>)userPreferences reloadBasketUseCase:(id<MealzcoreUseCase>)reloadBasketUseCase __attribute__((swift_name("init(userStore:userPreferences:reloadBasketUseCase:)"))) __attribute__((objc_designated_initializer));
+- (id<MealzcoreKotlinx_coroutines_coreDeferred>)invoke __attribute__((swift_name("invoke()")));
+@property (readonly) id<MealzcoreKotlinCoroutineContext> coroutineContext __attribute__((swift_name("coroutineContext")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ReloadBasketPassingInPosUseCase")))
+@interface MealzcoreReloadBasketPassingInPosUseCase : MealzcoreBase <MealzcoreParameterisedUseCase, MealzcoreKotlinx_coroutines_coreCoroutineScope>
+- (instancetype)initWithBasketStore:(id<MealzcoreBasketStore>)basketStore userStore:(id<MealzcoreUserStore>)userStore basketRepository:(id<MealzcoreBasketRepository>)basketRepository __attribute__((swift_name("init(basketStore:userStore:basketRepository:)"))) __attribute__((objc_designated_initializer));
+- (id<MealzcoreKotlinx_coroutines_coreDeferred>)invokeInput:(NSString *)input __attribute__((swift_name("invoke(input:)")));
+@property (readonly) id<MealzcoreKotlinCoroutineContext> coroutineContext __attribute__((swift_name("coroutineContext")));
+@end
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ReloadBasketWithStoredPosUseCase")))
+@interface MealzcoreReloadBasketWithStoredPosUseCase : MealzcoreBase <MealzcoreUseCase, MealzcoreKotlinx_coroutines_coreCoroutineScope>
+- (instancetype)initWithBasketStore:(id<MealzcoreBasketStore>)basketStore userStore:(id<MealzcoreUserStore>)userStore basketRepository:(id<MealzcoreBasketRepository>)basketRepository __attribute__((swift_name("init(basketStore:userStore:basketRepository:)"))) __attribute__((objc_designated_initializer));
+- (id<MealzcoreKotlinx_coroutines_coreDeferred>)invoke __attribute__((swift_name("invoke()")));
 @property (readonly) id<MealzcoreKotlinCoroutineContext> coroutineContext __attribute__((swift_name("coroutineContext")));
 @end
 
@@ -6841,12 +6851,13 @@ __attribute__((swift_name("ItemSelectorContractEvent.SelectItem")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("ItemSelectorContractState")))
 @interface MealzcoreItemSelectorContractState : MealzcoreBase <MealzcoreUiState>
-- (instancetype)initWithItems:(MealzcoreBasicUiState<NSArray<MealzcoreItem *> *> *)items selectedItem:(MealzcoreItem * _Nullable)selectedItem basketEntryId:(NSString * _Nullable)basketEntryId ingredientId:(NSString *)ingredientId ingredientName:(NSString *)ingredientName ingredientQuantity:(int32_t)ingredientQuantity ingredientUnit:(NSString *)ingredientUnit guestCount:(int32_t)guestCount defaultRecipeGuest:(int32_t)defaultRecipeGuest title:(NSString *)title searchPlaceholder:(NSString *)searchPlaceholder onItemSelected:(void (^)(MealzcoreItem *))onItemSelected __attribute__((swift_name("init(items:selectedItem:basketEntryId:ingredientId:ingredientName:ingredientQuantity:ingredientUnit:guestCount:defaultRecipeGuest:title:searchPlaceholder:onItemSelected:)"))) __attribute__((objc_designated_initializer));
-- (MealzcoreItemSelectorContractState *)doCopyItems:(MealzcoreBasicUiState<NSArray<MealzcoreItem *> *> *)items selectedItem:(MealzcoreItem * _Nullable)selectedItem basketEntryId:(NSString * _Nullable)basketEntryId ingredientId:(NSString *)ingredientId ingredientName:(NSString *)ingredientName ingredientQuantity:(int32_t)ingredientQuantity ingredientUnit:(NSString *)ingredientUnit guestCount:(int32_t)guestCount defaultRecipeGuest:(int32_t)defaultRecipeGuest title:(NSString *)title searchPlaceholder:(NSString *)searchPlaceholder onItemSelected:(void (^)(MealzcoreItem *))onItemSelected __attribute__((swift_name("doCopy(items:selectedItem:basketEntryId:ingredientId:ingredientName:ingredientQuantity:ingredientUnit:guestCount:defaultRecipeGuest:title:searchPlaceholder:onItemSelected:)")));
+- (instancetype)initWithItems:(MealzcoreBasicUiState<NSArray<MealzcoreItem *> *> *)items selectedItem:(MealzcoreItem * _Nullable)selectedItem basketEntryId:(NSString * _Nullable)basketEntryId ingredientId:(NSString *)ingredientId ingredientName:(NSString *)ingredientName ingredientQuantity:(int32_t)ingredientQuantity ingredientUnit:(NSString *)ingredientUnit combinedCapacity:(NSString * _Nullable)combinedCapacity guestCount:(int32_t)guestCount defaultRecipeGuest:(int32_t)defaultRecipeGuest title:(NSString *)title searchPlaceholder:(NSString *)searchPlaceholder onItemSelected:(void (^)(MealzcoreItem *))onItemSelected __attribute__((swift_name("init(items:selectedItem:basketEntryId:ingredientId:ingredientName:ingredientQuantity:ingredientUnit:combinedCapacity:guestCount:defaultRecipeGuest:title:searchPlaceholder:onItemSelected:)"))) __attribute__((objc_designated_initializer));
+- (MealzcoreItemSelectorContractState *)doCopyItems:(MealzcoreBasicUiState<NSArray<MealzcoreItem *> *> *)items selectedItem:(MealzcoreItem * _Nullable)selectedItem basketEntryId:(NSString * _Nullable)basketEntryId ingredientId:(NSString *)ingredientId ingredientName:(NSString *)ingredientName ingredientQuantity:(int32_t)ingredientQuantity ingredientUnit:(NSString *)ingredientUnit combinedCapacity:(NSString * _Nullable)combinedCapacity guestCount:(int32_t)guestCount defaultRecipeGuest:(int32_t)defaultRecipeGuest title:(NSString *)title searchPlaceholder:(NSString *)searchPlaceholder onItemSelected:(void (^)(MealzcoreItem *))onItemSelected __attribute__((swift_name("doCopy(items:selectedItem:basketEntryId:ingredientId:ingredientName:ingredientQuantity:ingredientUnit:combinedCapacity:guestCount:defaultRecipeGuest:title:searchPlaceholder:onItemSelected:)")));
 - (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
 - (NSUInteger)hash __attribute__((swift_name("hash()")));
 - (NSString *)description __attribute__((swift_name("description()")));
 @property (readonly) NSString * _Nullable basketEntryId __attribute__((swift_name("basketEntryId")));
+@property (readonly) NSString * _Nullable combinedCapacity __attribute__((swift_name("combinedCapacity")));
 @property (readonly) int32_t defaultRecipeGuest __attribute__((swift_name("defaultRecipeGuest")));
 @property (readonly) int32_t guestCount __attribute__((swift_name("guestCount")));
 @property (readonly) NSString *ingredientId __attribute__((swift_name("ingredientId")));
@@ -6868,6 +6879,7 @@ __attribute__((swift_name("ItemSelectorEmptyStates")))
 - (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
 @property (class, readonly) MealzcoreItemSelectorEmptyStates *noResultsAfterSearch __attribute__((swift_name("noResultsAfterSearch")));
 @property (class, readonly) MealzcoreItemSelectorEmptyStates *noSubstituteProducts __attribute__((swift_name("noSubstituteProducts")));
+@property (class, readonly) MealzcoreItemSelectorEmptyStates *searchingForNewProduct __attribute__((swift_name("searchingForNewProduct")));
 + (MealzcoreKotlinArray<MealzcoreItemSelectorEmptyStates *> *)values __attribute__((swift_name("values()")));
 @property (class, readonly) NSArray<MealzcoreItemSelectorEmptyStates *> *entries __attribute__((swift_name("entries")));
 @end
