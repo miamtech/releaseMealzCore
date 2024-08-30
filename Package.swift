@@ -22,7 +22,7 @@ let package = Package(
         .binaryTarget(
             name: "MealzCore",
             url: "https://github.com/miamtech/MealzCoreRelease/raw/release/4.1.0/mealzcore.zip",
-            checksum: "303a6b555a011916ab4b96786796a9ac16e17a1a1bea218493caff36fdd1c54a"
+            checksum: "d8dbbf8b2954a2547c450086eb4ea8140ceacbd9dcd49314ff3c2f299c66e58f"
         ),
     ]
 )
